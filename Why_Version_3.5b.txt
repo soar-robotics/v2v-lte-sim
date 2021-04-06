@@ -1,0 +1,26 @@
+LTEV2Vsim v3.5b corrects some imperfections of v3.5.
+
+Inside function 'BRreassignment3GPPmode()':
+1) line 70 is corrected
+from 	'(T2<T1 && (BRTi>T1 && BRTi<T2))'
+to 	'(T2<T1 && (BRTi>T2 && BRTi<T1))'
+
+Inside function 'BRreassignment3GPPmode()':
+2) line 175 is corrected
+from 	'powerThreshold = simParams.powerThresholdMode4 * (12*appParams.RBsBeacon);'
+to 	'powerThreshold = simParams.powerThresholdMode4 * 12;'
+
+Inside function 'BRreassignment3GPPmode()':
+3) line 181 is corrected
+from 	'usableBRs = (sensingMatrixPerm<powerThreshold) | (knownUsedMatrixPerm<1);'
+to 	'usableBRs = (sensingMatrixPerm<powerThreshold) | ((sensingMatrixPerm<inf) & (knownUsedMatrixPerm<1));'
+
+Inside function 'checkVehiclesStartReceiving11p()':
+4) line 29 is corrected
+from	'for iVehicle = IDvehicle(logical(ifStartReceiving.*(vState(IDvehicle)==2)))'
+to	'for iVehicle = (IDvehicle(logical(ifStartReceiving.*(vState(IDvehicle)==2))))'' -- transpose
+
+Inside function 'checkVehiclesStopReceiving11p()':
+5) line 26 is corrected 
+from 	'for iVehicle = IDvehicle(logical(ifStopReceiving .* (nPackets(IDvehicle)>0)))'
+to	'for iVehicle = (IDvehicle(logical(ifStopReceiving .* (nPackets(IDvehicle)>0))))''
